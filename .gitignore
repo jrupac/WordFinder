@@ -1,0 +1,12 @@
+.project
+.settings
+.metadata/
+data/
+.classpath
+*.class
+.externalToolBuilders/
+bin/
+out/
+gen/
+local.properties
+.idea/

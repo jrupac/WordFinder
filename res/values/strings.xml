@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">WordFinderApp</string>
+  <string name="submit_text">Submit</string>
+  <string name="query_hint">Enter Query Text (? for any character)</string>
+  <string name="loading">Loading…</string>
+  <string name="startsWith_hint">Starts With</string>
+  <string name="containsExact_hint">Contains Exact (? for any character)</string>
+  <string name="endsWith_hint">Ends With</string>
+</resources>

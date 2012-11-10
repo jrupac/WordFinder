@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:padding="10dp"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:gravity="center_horizontal"
+  >
+
+  <TextView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/query_hint"/>
+  <EditText
+    android:id="@+id/query_field"
+    android:padding="5dp"
+    android:layout_marginBottom="25dp"
+    android:layout_width="fill_parent"
+    android:hint=""
+    android:inputType="textNoSuggestions"
+    android:layout_height="wrap_content"
+    />
+
+  <LinearLayout
+    android:id="@+id/border"
+    android:background="#CCC"
+    android:layout_height="4dp"
+    android:layout_width="fill_parent"
+    android:layout_marginBottom="20dp"
+    />
+
+  <TextView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/startsWith_hint"/>
+  <EditText
+    android:id="@+id/startsWith_field"
+    android:padding="5dp"
+    android:layout_marginBottom="25dp"
+    android:layout_width="fill_parent"
+    android:inputType="textNoSuggestions"
+    android:layout_height="wrap_content"
+    />
+
+  <TextView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/containsExact_hint"/>
+  <EditText
+    android:id="@+id/containsExact_field"
+    android:padding="5dp"
+    android:layout_marginBottom="25dp"
+    android:layout_width="fill_parent"
+    android:inputType="textNoSuggestions"
+    android:layout_height="wrap_content"
+    />
+
+
+  <TextView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/endsWith_hint"/>
+  <EditText
+    android:id="@+id/endsWith_field"
+    android:layout_marginBottom="25dp"
+    android:layout_width="fill_parent"
+    android:padding="5dp"
+    android:inputType="textNoSuggestions"
+    android:layout_height="wrap_content"
+    />
+  <Button
+    android:id="@+id/submit_form"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_gravity="center_horizontal"
+    android:text="@string/submit_text"
+    />
+</LinearLayout>
+
