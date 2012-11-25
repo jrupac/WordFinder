@@ -7,13 +7,14 @@ import android.util.Pair;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import apps.jrupac.WordFinder.tools.Solver;
+import apps.jrupac.WordFinder.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ResultActivity extends ListActivity {
 
-    public static transient final String TAG = "ResultActivity";
+    public transient final String TAG = Utils.TAG(this);
 
     public static final String QUERY_TEXT = "query_text";
     public static final String STARTS_WITH_TEXT = "starts_with_text";

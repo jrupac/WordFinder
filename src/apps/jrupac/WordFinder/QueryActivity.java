@@ -10,13 +10,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import apps.jrupac.WordFinder.tools.Solver;
+import apps.jrupac.WordFinder.utils.Utils;
 
 import java.io.IOException;
 import java.io.InputStream;
 
 public class QueryActivity extends Activity {
 
-    public static transient final String TAG = "QueryActivity";
+    public transient final String TAG = Utils.TAG(this);
 
     private Button submitButton;
 
