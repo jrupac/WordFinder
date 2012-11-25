@@ -35,14 +35,14 @@ public class ResultActivity extends ListActivity {
         String containsExact = args.getString(CONTAINS_EXACT_TEXT);
         String endsWith = args.getString(ENDS_WITH_TEXT);
 
-        solver = new Solver();
+        solver = Solver.INSTANCE;
         progressLayout = findViewById(R.id.progress_layout);
         showSolution(query, startsWith, containsExact, endsWith);
     }
 
     private void showSolution(String query, String startsWith, String containsExact,
                               String endsWith) {
-        List<Pair<String, Integer>> solution = solver.solve(query, startsWith, containsExact, endsWith);
+        List<Pair<String, Integer>> solution = solver.solve(query, startsWith, endsWith, containsExact);
         List<String> listItems = new ArrayList<String>();
 
         for (Pair<String, Integer> elem : solution) {

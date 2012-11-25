@@ -19,7 +19,9 @@ import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.regex.Pattern;
 
-public class Solver {
+public enum Solver {
+    INSTANCE;
+
     private static boolean initialized = false;
     private static HashMultimap<String, Pair<String, Integer>> wordMapping;
     private static Map<Character, Integer> valueMap;
@@ -116,12 +118,6 @@ public class Solver {
         return value;
     }
 
-    public Solver() {
-        if (!initialized) {
-            throw new IllegalStateException("Must initialize context first.");
-        }
-    }
-
     private final class BY_VALUE implements Comparator<Pair<String, Integer>> {
         @Override
         public int compare(Pair<String, Integer> arg0,
@@ -132,6 +128,10 @@ public class Solver {
 
     public List<Pair<String, Integer>> solve(String query, String startsWith,
                                              String endsWith, String containsExact) {
+        if (!initialized) {
+            throw new IllegalStateException("Must initialize context first.");
+        }
+
         try {
             latch.await();
         } catch (InterruptedException e) {

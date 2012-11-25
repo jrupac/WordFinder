@@ -18,6 +18,40 @@ public class QueryActivity extends Activity {
 
     public static transient final String TAG = "QueryActivity";
 
+    private Button submitButton;
+
+    private final Thread initContextThread = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            InputStream dictStream = null;
+            try {
+                AssetManager am = getAssets();
+                dictStream = am.open("words.txt");
+                Solver.initContext(dictStream);
+            } catch (IOException e) {
+                Log.e(TAG, "Could not open file", e);
+                Toast.makeText(QueryActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                finish();
+            } finally {
+                if (dictStream != null) {
+                    try {
+                        dictStream.close();
+                    } catch (IOException e) {
+                        Log.e(TAG, "Failed to close stream.", e);
+                    }
+                }
+
+                QueryActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        submitButton.setText("Submit!");
+                        submitButton.setEnabled(true);
+                    }
+                });
+            }
+        }
+    });
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +62,13 @@ public class QueryActivity extends Activity {
         final EditText containsField = (EditText) findViewById(R.id.containsExact_field);
         final EditText endsWithField = (EditText) findViewById(R.id.endsWith_field);
 
-        Button submitButton = (Button) findViewById(R.id.submit_form);
+        submitButton = (Button) findViewById(R.id.submit_form);
+
+        submitButton.setText("Loading...");
+        submitButton.setEnabled(false);
+
+        initContextThread.start();
+
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,32 +89,5 @@ public class QueryActivity extends Activity {
                 startActivity(myIntent);
             }
         });
-
-        Thread initContextThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                InputStream dictStream = null;
-
-                try {
-                    AssetManager am = getAssets();
-                    dictStream = am.open("words.txt");
-                    Solver.initContext(dictStream);
-                } catch (IOException e) {
-                    Log.e(TAG, "Could not open file", e);
-                    Toast.makeText(QueryActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    finish();
-                } finally {
-                    if (dictStream != null) {
-                        try {
-                            dictStream.close();
-                        } catch (IOException e) {
-                            Log.e(TAG, "Failed to close stream.", e);
-                        }
-                    }
-                }
-            }
-        });
-
-        initContextThread.start();
     }
 }
