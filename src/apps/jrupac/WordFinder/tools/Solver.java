@@ -165,7 +165,7 @@ public enum Solver {
         String regex = "";
 
         if (startsWith != null) {
-            regex += "^" + startsWith + ".*";
+            regex += "^" + startsWith.replaceAll("\\?", ".") + ".*";
         }
 
         if (containsExact != null) {
@@ -173,7 +173,7 @@ public enum Solver {
         }
 
         if (endsWith != null) {
-            regex += endsWith + "$";
+            regex += endsWith.replaceAll("\\?", ".") + "$";
         }
 
         return regex;
